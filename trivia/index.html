@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            window.onload = function() {
+                const correctAnswer1 = "Paris";
+                const correctAnswer2 = "H2O";
+
+                // Multiple choice question
+                const buttons = document.querySelectorAll('.answer-button');
+                const mcResult = document.querySelector('#mc-result');
+
+                buttons.forEach((button) => {
+                    button.onclick = function() {
+                        if (button.textContent === correctAnswer1) {
+                            button.style.backgroundColor = "green";
+                            mcResult.textContent = "Correct!";
+                        } else {
+                            button.style.backgroundColor = "red";
+                            mcResult.textContent = "Incorrect";
+                        }
+                    }
+                });
+
+                // Free response question
+                const frAnswer = document.querySelector('#fr-answer');
+                const frConfirm = document.querySelector('#fr-confirm');
+                const frResult = document.querySelector('#fr-result');
+
+                frConfirm.onclick = function() {
+                    if (frAnswer.value.trim().toUpperCase() === correctAnswer2) {
+                        frAnswer.style.backgroundColor = "green";
+                        frResult.textContent = "Correct!";
+                    } else {
+                        frAnswer.style.backgroundColor = "red";
+                        frResult.textContent = "Incorrect";
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice</h2>
+                <hr>
+                <h3 id="question-1">What is the capital of France?</h3>
+                <button class="answer-button">Berlin</button>
+                <button class="answer-button">London</button>
+                <button class="answer-button">Paris</button>
+                <p id="mc-result"></p>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3 id="question-2">What is the chemical formula for water?</h3>
+                <input id="fr-answer" type="text">
+                <button id="fr-confirm">Confirm</button>
+                <p id="fr-result"></p>
+            </div>
+        </div>
+    </body>
+</html>
